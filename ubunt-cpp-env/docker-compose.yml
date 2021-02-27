@@ -1,0 +1,22 @@
+version: '3.4'
+
+# 宿主机开放的端口
+x-publishedport: &publishedport
+  "5822"
+
+services: 
+  ubuntu-cpp-env: 
+    # 从docker hub 拉取
+    image: lvhui/ubuntu-cpp-env
+    # 从本地构建    
+    # build: .
+    container_name: ubuntu-cpp-env
+    volumes: 
+      - /etc/localtime:/etc/localtime:ro
+    ports: 
+      - target: "22"
+        published: *publishedport
+    cap_add: 
+      - ALL
+    restart: unless-stopped
+

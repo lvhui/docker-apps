@@ -1,7 +1,7 @@
 version: '3.4'
 
-# 宿主机开放的端口
-x-publishedport: &publishedport
+# 宿主机sshd端口
+x-publishedsshdport: &publishedsshdport
   "5822"
 
 services: 
@@ -12,10 +12,10 @@ services:
     # build: .
     container_name: ubuntu-cpp-env
     volumes: 
-      - /etc/localtime:/etc/localtime:ro
+      - /etc/localtime:/etc/localtime:ro # 使docker中时区和宿主机一致
     ports: 
       - target: "22"
-        published: *publishedport
+        published: *publishedsshdport
     cap_add: 
       - ALL
     restart: unless-stopped

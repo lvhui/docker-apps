@@ -1,0 +1,32 @@
+version: "3.7"
+
+# 宿主机sshd端口
+x-publishedsshdport: &publishedsshdport
+  "5822"
+
+# 宿主机jupyter端口
+x-publishedjupyterport: &publishedjupyterport
+  "5814"
+
+services:
+   
+   quant:
+      #从docker hub 拉取
+      image: lvhui/ubuntu-quant
+      # 从本地构建
+      # build: .
+      container_name: quant 
+      restart: unless-stopped
+      ports: 
+        - target: "22"
+          published: *publishedsshdport
+        - target: "8888"
+          published: *publishedjupyterport
+      restart: unless-stopped
+      volumes:
+         - /etc/localtime:/etc/localtime:ro # 使docker中时区和宿主机一致
+      cap_add:
+         - ALL
+      working_dir: /root
+      command: bash -c "/usr/sbin/sshd -D -e -f /etc/ssh/sshd_config_remote_cpp && jupyter lab"
+   

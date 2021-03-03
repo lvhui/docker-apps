@@ -40,8 +40,11 @@ RUN jupyter labextension install @lckr/jupyterlab_variableinspector && \
 
 # 更换pip清华源
 RUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip install tensorflow -i https://pypi.douban.com/simple
 # 安装sklearn tensorflow 等
 RUN pip install --upgrade pip && \
 	pip install npm && \
-	pip install -U scikit-learn && \
-	pip install tensorflow
+	pip install -U scikit-learn 
+
+# 安装PyTorch
+RUN conda install pytorch torchvision torchaudio cpuonly -c pytorch

@@ -28,5 +28,4 @@ services:
       cap_add:
          - ALL
       working_dir: /root
-      entrypoint: jupyter lab
-   
+      command: bash -c "/usr/sbin/sshd -D -e -f /etc/ssh/sshd_config_remote_cpp && jupyter lab"

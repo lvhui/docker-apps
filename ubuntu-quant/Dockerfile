@@ -1,4 +1,4 @@
-FROM lvhui/ubuntu-aibase 
+FROM lvhui/ubuntu-aibase AS quant
 
 # 配置同花顺数据接口API
 WORKDIR /downloads

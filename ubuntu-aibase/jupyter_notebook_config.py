@@ -389,7 +389,7 @@ c.NotebookApp.ip = '*'
 #  
 #  The string should be of the form type:salt:hashed-password.
 #  Default: ''
-c.NotebookApp.password = 'argon2:$argon2id$v=19$m=10240,t=10,p=8$RTeE6xEqEM80Opd9yIERug$kKpxQbLyRSoIq5UkmQB2mA'
+# c.NotebookApp.password = 'argon2:$argon2id$v=19$m=10240,t=10,p=8$RTeE6xEqEM80Opd9yIERug$kKpxQbLyRSoIq5UkmQB2mA'
 
 ## Forces users to use a password for the Notebook server. This is useful in a
 #  multi user environment, for instance when everybody in the LAN can access each

@@ -24,6 +24,8 @@ RUN ( \
   && mkdir /run/sshd
 
 RUN useradd -m user \
-  && yes password | passwd user
+  && yes password | passwd user && usermod -g root user
 
-CMD ["/usr/sbin/sshd", "-D", "-e", "-f", "/etc/ssh/sshd_config_remote_cpp"]
+ADD start.sh /root/start.sh
+RUN chmod +x /root/start.sh
+ENTRYPOINT ["/root/start.sh"]

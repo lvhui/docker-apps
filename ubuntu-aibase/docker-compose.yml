@@ -6,26 +6,24 @@ x-publishedsshdport: &publishedsshdport
 
 # 宿主机jupyter端口
 x-publishedjupyterport: &publishedjupyterport
-  "5888"
+  "5818"
 
 services:
    
    aibase:
       # 从docker hub 拉取
-      # image: lvhui/ubuntu-aibase
+      image: lvhui/ubuntu-aibase
       # 从本地构建
-      build: .
-      container_name: aibase
+      # build: .
+      # container_name: aibase
       restart: unless-stopped
       ports: 
         - target: "22"
           published: *publishedsshdport
         - target: "8888"
           published: *publishedjupyterport
-      restart: until-stopped
       volumes:
          - /etc/localtime:/etc/localtime:ro # 使docker中时区和宿主机一致
       cap_add:
          - ALL
       working_dir: /root
-      command: bash -c "/usr/sbin/sshd -D -e -f /etc/ssh/sshd_config_remote_cpp && jupyter lab"
